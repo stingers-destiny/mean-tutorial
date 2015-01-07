@@ -25,6 +25,17 @@ exports.read = function(req, resp, next) {
 	resp.json(req.user);
 };
 
+
+exports.delete = function(req, resp, next) {
+	req.user.remove(function(err) {
+		if (err) {
+			return next(err);
+		} else {
+			resp.json(req.user);
+		}
+	});
+};
+
 exports.userByUserName = function(req, resp, next, username) {
 	User.findOne({
 		'username' : username
