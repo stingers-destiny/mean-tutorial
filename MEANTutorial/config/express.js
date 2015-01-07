@@ -34,8 +34,9 @@ module.exports = function(){
 	app.set('views', './app/views');
 	app.set('view engine', 'ejs');
 	
-	// Init route
-	require('../app/routes/index.server.routes.js')(app);
+	// Init routes
+	require('../app/routes/index.server.routes')(app);
+	require('../app/routes/users.server.routes')(app);
 	
 	// Adding static pages middleware. Must be done after route so as to not waste IO during req processing
 	app.use(express.static('./public'));
