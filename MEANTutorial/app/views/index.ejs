@@ -9,7 +9,17 @@
 <% if ( userFullName ) { %> 
 <h2>Hello <%=userFullName%> </h2>
 <a href="/signout">Sign out</a> <% } else { %> <a href="/signup">Signup</a> <a href="/signin">Signin</a> <% } %>
-<img src ="img/Chrysanthemum.jpg" alt="Logo" />
+
+<section ng-include="'/examplemodule/views/example.client.view.html'"></section> 
+
 <h1><%= title %></h1> 
+  
+<script type="text/javascript" src="/lib/angular/angular.js"></script> 
+<script type="text/javascript" src="/examplemodule/example.client.module.js"></script> 
+<script type="text/javascript" src="/examplemodule/controllers/example.client.controller.js"></script> 
+<!--<script type="text/javascript" src="/examplemodule/config/example.client.route.js"></script>--> 
+<script type="text/javascript" src="/application.js"></script>
+
+
 </body> 
 </html>
