@@ -6,6 +6,8 @@ var bodyParser = require('body-parser');
 var compression = require('compression');
 var methodOverride = require('method-override');
 var session = require('express-session');
+var passport = require('passport');
+var flash = require('connect-flash');
 
 module.exports = function(){
 	var app = express();
@@ -23,6 +25,10 @@ module.exports = function(){
 	app.use(bodyParser.json());
 	app.use(methodOverride());
 	
+	// Enable passport
+	app.use(passport.initialize());
+	app.use(passport.session()); // Uses Express session doesn't create its own
+	
 	// Setting the session middleware
 	app.use(session({
 		saveUninitialized : true,
@@ -33,6 +39,9 @@ module.exports = function(){
 	// Setting view rendering for express
 	app.set('views', './app/views');
 	app.set('view engine', 'ejs');
+	
+	// Initializing flash storage for passing messages between views
+	app.use(flash());
 	
 	// Init routes
 	require('../app/routes/index.server.routes')(app);

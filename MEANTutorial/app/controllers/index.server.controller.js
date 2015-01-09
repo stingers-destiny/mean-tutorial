@@ -7,6 +7,6 @@ exports.render = function(req, res){
 	console.log('new ' + req.session.lastVisit);
 
 	
-	res.render('index', {title : 'Hello World'}); // FIrst argument is name of EJS template (index) and second a 
+	res.render('index', {title : 'Hello World', userFullName: req.user ? req.user.fullName : ''}); // FIrst argument is name of EJS template (index) and second a 
 												  // dictionary of all variables needed by that template
 };
