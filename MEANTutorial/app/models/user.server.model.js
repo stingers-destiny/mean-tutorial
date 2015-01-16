@@ -22,9 +22,11 @@ var userSchema = new Schema({
 	created : {		type: Date,		default : Date.now	}
 });
 
-userSchema.virtual('fullName').get(function() {
+userSchema.virtual('fullName')
+.get(function() {
     return this.firstName + ' ' + this.lastName;
-}).set(function(fullName) {
+})
+.set(function(fullName) {
     var splitName = fullName.split(' ');
     this.firstName = splitName[0] || '';
     this.lastName = splitName[1] || '';
@@ -46,7 +48,9 @@ userSchema.methods.hashPassword = function(password){
 
 // Instance method to authenticate
 userSchema.methods.authenticate = function(password){
-	return this.password = this.hashPassword(password);
+	var hashPass = this.hashPassword(password);
+	var loginSuccess = this.password === hashPass;
+	return loginSuccess;
 };
 
 

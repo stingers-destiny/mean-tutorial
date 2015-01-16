@@ -5,11 +5,12 @@ module.exports = function(){
 	var User = mongoose.model('User');
 	
 	passport.serializeUser(function(user, callback){
-		callback(null, user.username);
+		callback(null, user.id);
 	});
 	
-	passport.deserializeUser(function(username, callback){
-		User.findOne({'username':username}, '-password -salt', function(err, user){ // Mongoose will not load password, salt
+	passport.deserializeUser(function(id, callback){
+		User.find({'_id':id}, '-password -salt', function(err, user){ // Mongoose will not load password, salt
+			console.log('In deserialize. User is ' + JSON.stringify(user));
 			callback(err, user);
 		});
 	});

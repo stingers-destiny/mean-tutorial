@@ -25,16 +25,16 @@ module.exports = function(){
 	app.use(bodyParser.json());
 	app.use(methodOverride());
 	
-	// Enable passport
-	app.use(passport.initialize());
-	app.use(passport.session()); // Uses Express session doesn't create its own
-	
 	// Setting the session middleware
 	app.use(session({
 		saveUninitialized : true,
 		resave : true,
 		secret : config.sessionSecret
 	}));
+	
+	// Enable passport
+	app.use(passport.initialize());
+	app.use(passport.session()); // Uses Express session doesn't create its own
 	
 	// Setting view rendering for express
 	app.set('views', './app/views');

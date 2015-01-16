@@ -3,6 +3,9 @@ angular.module('examplemodule').config(
 			$routeProvider.when('/', {
 				templateUrl : 'examplemodule/views/example.client.view.html'
 			}).otherwise({ // For unknown routes
-				redirectTo : '/' // Use the route '/'
+				redirectTo : 'examplemodule/views/example.client.view2.html' // Use
+																				// the
+																				// route
+																				// '/'
 			});
 		} ]);
